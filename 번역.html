@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html lang="ko">
+<body>
+    <textarea class ="textareas">입력해주세요..</textarea>
+    <button id="buttons">번역</button>
+    <p class="results">구글 번역 테스트 페이지</p>
+    <br>
+    <div id="google_translate_element">
+
+    </div>
+    <script>
+        // 출력값 아이디
+        var textresult = document.querySelector(".results");
+
+ 
+
+        // 구글 번역 스크립트
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'ko',
+                    includedLanguages: 'en,ja,ko,zh-CN,zh-TW',
+                    layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL // none or HORIZONTAL, SIMPLE
+                }
+                , 'google_translate_element'
+            );
+        }
+        document.getElementById("buttons").addEventListener("click", function arenge(){
+            // 텍스트 박스 아이디
+            let mytextbox = document.querySelector(".textareas");
+            let lines = mytextbox.value.split("\n"); // 줄바꿈
+
+            let resultstring = "<p>";
+            for (let i = 0; i < lines.length; i++) {
+                resultstring += lines[i] + "<br>";
+            }
+            resultstring += "</p>";
+
+            textresult.innerHTML = resultstring;
+        });
+        
+    </script>
+
+    <!-- 스크립트 소스를 HTTPS로 변경 -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
+
+https://developers.naver.com/docs/papago/papago-nmt-example-code.md
